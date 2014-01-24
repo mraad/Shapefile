@@ -10,12 +10,12 @@ The [shapefile specification](http://www.esri.com/library/whitepapers/pdfs/shape
 used to create splits on "large" shapefile. This is on the TODO list :-)
 When defining the input path to the job, a user can point to a folder or a set of folders containing both the `.shp` and/or the `.dbf` files.
 
-Input Format              | Writable | Description
---------------------------|------------
-DBFInputFormat            | MapWritable | Read a DBF file in HDFS
-PointInputFormat          | PointWitable |Read an SHP file in HDFS containing simple 2D point geometry
-PolygonInputFormat        | PolygonWitable | Read an SHP file in HDFS containing simple 2D polygon geometry
-PointFeatureInputFormat   | PointFeatureWitable | Read SHP/DBF files in HDFS containing simple 2D point feature
+Input Format              | Writable              | Description
+--------------------------|-----------------------|------------
+DBFInputFormat            | MapWritable           | Read a DBF file in HDFS
+PointInputFormat          | PointWitable          | Read an SHP file in HDFS containing simple 2D point geometry
+PolygonInputFormat        | PolygonWitable        | Read an SHP file in HDFS containing simple 2D polygon geometry
+PointFeatureInputFormat   | PointFeatureWitable   | Read SHP/DBF files in HDFS containing simple 2D point feature
 PolygonFeatureInputFormat | PolygonFeatureWriable | Read SHP/DBF files in HDFS containing simple 2D polygon feature
 
 This library depends on the [Esri Geometry API for Java](https://github.com/Esri/geometry-api-java) under the [GIS Tools For Hadoop](http://esri.github.io/gis-tools-for-hadoop/).

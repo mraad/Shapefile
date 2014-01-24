@@ -20,6 +20,8 @@ PolygonFeatureInputFormat | PolygonFeatureWriable | Read SHP/DBF files in HDFS c
 
 This library depends on the [Esri Geometry API for Java](https://github.com/Esri/geometry-api-java) under the [GIS Tools For Hadoop](http://esri.github.io/gis-tools-for-hadoop/).
 
+**Clone or pull the latest version of the geometry API and build/install it before building this project.**
+
 ## Sample MapReduce Job
 ```
 public class ShapefileTool extends Configured implements Tool

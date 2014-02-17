@@ -49,6 +49,9 @@ public class MiniFS
 
         final Configuration config = new Configuration();
         config.set("hadoop.tmp.dir", tmpDir.getAbsolutePath());
+        config.setBoolean("dfs.permissions", false);
+        config.setInt("dfs.replication", 1);
+        config.set("dfs.datanode.data.dir.perm", "777");
 
         if (tmpDir.exists())
         {
@@ -63,8 +66,9 @@ public class MiniFS
         System.setProperty("hadoop.log.dir", new File(tmpDir, "logs").getAbsolutePath());
 
         m_jobConfig = new JobConf(config);
-        m_dfsCluster = new MiniDFSCluster(m_jobConfig, 1, true, null);
+        m_dfsCluster = new MiniDFSCluster.Builder(m_jobConfig).numDataNodes(1).format(true).build();
         m_fileSystem = m_dfsCluster.getFileSystem();
+        m_dfsCluster.waitClusterUp();
     }
 
     @After

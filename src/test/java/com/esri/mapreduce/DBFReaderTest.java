@@ -4,6 +4,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import org.apache.hadoop.mapreduce.TaskAttemptID;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
+import org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class DBFReaderTest extends MapreduceFS
     {
         final Path dbf = getPath("/testpoint.dbf");
         final FileSplit fileSplit = getFileSplit(dbf);
-        final TaskAttemptContext taskAttemptContext = new TaskAttemptContext(m_jobConfig, new TaskAttemptID());
+        final TaskAttemptContext taskAttemptContext = new TaskAttemptContextImpl(m_jobConfig, new TaskAttemptID());
         final DBFRecordReader dbfRecordReader = new DBFRecordReader(fileSplit, taskAttemptContext);
         assertTrue(dbfRecordReader.nextKeyValue());
         assertEquals(0L, dbfRecordReader.getCurrentKey().get());

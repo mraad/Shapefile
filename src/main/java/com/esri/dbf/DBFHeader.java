@@ -4,12 +4,13 @@ import org.apache.commons.io.EndianUtils;
 
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  */
-public class DBFHeader
+public class DBFHeader implements Serializable
 {
 
     private byte signature;              /* 0     */

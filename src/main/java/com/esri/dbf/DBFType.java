@@ -1,8 +1,10 @@
 package com.esri.dbf;
 
+import java.io.Serializable;
+
 /**
  */
-public final class DBFType
+public final class DBFType implements Serializable
 {
 
     public final static byte END = 0x1A;

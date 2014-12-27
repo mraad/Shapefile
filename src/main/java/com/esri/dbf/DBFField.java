@@ -12,9 +12,10 @@ import org.apache.hadoop.io.Writable;
 import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 
-public class DBFField
+public class DBFField implements Serializable
 {
 
     public static final int TERMINATOR = 0x0d;
@@ -271,10 +272,16 @@ public class DBFField
     {
         final char c = (char) dataType;
         final StringBuilder sb = new StringBuilder("DBFField{");
-        sb.append("fieldName='").append(fieldName).append('\'');
-        sb.append(", dataType='").append(c).append('\'');
-        sb.append(", fieldLength=").append(fieldLength);
-        sb.append(", decimalCount=").append(decimalCount);
+        sb.append("fieldName='")
+          .append(fieldName)
+          .append('\'');
+        sb.append(", dataType='")
+          .append(c)
+          .append('\'');
+        sb.append(", fieldLength=")
+          .append(fieldLength);
+        sb.append(", decimalCount=")
+          .append(decimalCount);
         sb.append('}');
         return sb.toString();
     }

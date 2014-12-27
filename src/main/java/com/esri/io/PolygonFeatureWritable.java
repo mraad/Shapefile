@@ -1,7 +1,5 @@
 package com.esri.io;
 
-import org.apache.hadoop.io.MapWritable;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
@@ -10,7 +8,7 @@ import java.io.IOException;
  */
 public class PolygonFeatureWritable extends PolygonWritable
 {
-    public final MapWritable attributes = new MapWritable();
+    public final Attributes attributes = new Attributes();
 
     public PolygonFeatureWritable()
     {

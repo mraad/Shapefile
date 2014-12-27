@@ -1,7 +1,5 @@
 package com.esri.io;
 
-import org.apache.hadoop.io.MapWritable;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
@@ -10,7 +8,7 @@ import java.io.IOException;
  */
 public class PointFeatureWritable extends PointWritable
 {
-    public final MapWritable attributes = new MapWritable();
+    public final Attributes attributes = new Attributes();
 
     public PointFeatureWritable()
     {
@@ -29,4 +27,5 @@ public class PointFeatureWritable extends PointWritable
         super.readFields(dataInput);
         attributes.readFields(dataInput);
     }
+
 }

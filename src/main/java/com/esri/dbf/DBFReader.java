@@ -4,6 +4,8 @@ import org.apache.hadoop.io.Writable;
 
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,10 +13,10 @@ import java.util.Map;
 /**
  * Based on https://code.google.com/p/javadbf/
  */
-public class DBFReader
+public class DBFReader implements Serializable
 {
-    private final DataInputStream m_dataInputStream;
-    private final DBFHeader m_header;
+    private final transient DataInputStream m_dataInputStream;
+    private final transient DBFHeader m_header;
 
     public DBFReader(final DataInputStream dataInputStream) throws IOException
     {
@@ -57,6 +59,17 @@ public class DBFReader
         return values;
     }
 
+    public List<Object> readValues() throws IOException
+    {
+        final List<Object> values = new ArrayList<Object>();
+        final int numberOfFields = m_header.numberOfFields;
+        for (int i = 0; i < numberOfFields; i++)
+        {
+            values.add(readFieldValue(i));
+        }
+        return values;
+    }
+
     public List<DBFField> getFields()
     {
         return m_header.fields;
@@ -93,12 +106,14 @@ public class DBFReader
 
     public Object readFieldValue(final int index) throws IOException
     {
-        return m_header.getField(index).readValue(m_dataInputStream);
+        return m_header.getField(index)
+                       .readValue(m_dataInputStream);
     }
 
     public Writable readFieldWritable(final int index) throws IOException
     {
-        return m_header.getField(index).readWritable(m_dataInputStream);
+        return m_header.getField(index)
+                       .readWritable(m_dataInputStream);
     }
 
 }

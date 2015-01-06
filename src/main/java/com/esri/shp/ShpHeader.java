@@ -4,22 +4,23 @@ import org.apache.commons.io.EndianUtils;
 
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  */
-public class ShpHeader
+public class ShpHeader implements Serializable
 {
-    public int fileLength;
-    public int version;
-    public int shapeType;
-    public double xmin;
-    public double ymin;
-    public double xmax;
-    public double ymax;
-    public double zmin;
-    public double zmax;
-    public double mmin;
-    public double mmax;
+    public transient int fileLength;
+    public transient int version;
+    public transient int shapeType;
+    public transient double xmin;
+    public transient double ymin;
+    public transient double xmax;
+    public transient double ymax;
+    public transient double zmin;
+    public transient double zmax;
+    public transient double mmin;
+    public transient double mmax;
 
     public ShpHeader(final DataInputStream dataInputStream) throws IOException
     {

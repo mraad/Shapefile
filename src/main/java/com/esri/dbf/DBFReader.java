@@ -99,6 +99,11 @@ public class DBFReader implements Serializable
         return m_header.numberOfFields;
     }
 
+    public int getNumberOfRecords()
+    {
+        return m_header.numberOfRecords;
+    }
+
     public byte nextDataType() throws IOException
     {
         byte dataType;

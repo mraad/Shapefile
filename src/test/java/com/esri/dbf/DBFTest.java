@@ -40,6 +40,8 @@ public class DBFTest
             assertField(fields.get(4), "AText50", 'C', 50, 0);
             assertField(fields.get(5), "ADate", 'D', 8, 0);
 
+            assertEquals(1, dbfReader.getNumberOfRecords());
+
             assertNotEquals(DBFType.END, dbfReader.nextDataType());
 
             Writable writable = dbfReader.readFieldWritable(0);

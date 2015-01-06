@@ -43,6 +43,31 @@ public class DBFReader implements Serializable
         return readRecordAsMap(new HashMap<String, Object>());
     }
 
+    public Object[] createValueArray()
+    {
+        return new Object[m_header.numberOfFields];
+    }
+
+    private Object[] queryValues(final Object[] values) throws IOException
+    {
+        final int numberOfFields = m_header.numberOfFields;
+        for (int i = 0; i < numberOfFields; i++)
+        {
+            values[i] = readFieldValue(i);
+        }
+        return values;
+    }
+
+    public Object[] queryRecord(final Object[] values) throws IOException
+    {
+        final byte dataType = nextDataType();
+        if (dataType == DBFType.END)
+        {
+            return null;
+        }
+        return queryValues(values);
+    }
+
     public Object[] readRecord() throws IOException
     {
         final byte dataType = nextDataType();
@@ -50,13 +75,7 @@ public class DBFReader implements Serializable
         {
             return null;
         }
-        final int numberOfFields = m_header.numberOfFields;
-        final Object values[] = new Object[numberOfFields];
-        for (int i = 0; i < numberOfFields; i++)
-        {
-            values[i] = readFieldValue(i);
-        }
-        return values;
+        return queryValues(createValueArray());
     }
 
     public List<Object> readValues() throws IOException

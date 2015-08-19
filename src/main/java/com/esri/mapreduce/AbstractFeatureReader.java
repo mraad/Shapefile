@@ -49,10 +49,13 @@ public abstract class AbstractFeatureReader<T extends Writable> extends Abstract
     protected void putAttributes(final MapWritable attributes) throws IOException
     {
         final int n = m_dbfReader.getNumberOfFields();
-        m_dbfReader.nextDataType();
-        for (int i = 0; i < n; i++)
+        if(n > 0)
         {
-            attributes.put(m_keys.get(i), m_dbfReader.readFieldWritable(i));
+            m_dbfReader.nextDataType();
+            for (int i = 0; i < n; i++)
+            {
+                attributes.put(m_keys.get(i), m_dbfReader.readFieldWritable(i));
+            }
         }
     }
 

@@ -11,6 +11,7 @@ import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,12 +22,13 @@ abstract class AbstractInputFormat<T extends Writable>
     @Override
     protected List<FileStatus> listStatus(final JobContext job) throws IOException
     {
-        final List<FileStatus> list = super.listStatus(job);
-        for (final FileStatus fileStatus : list)
+        final List<FileStatus> orig = super.listStatus(job);
+        final List<FileStatus> list = new ArrayList<FileStatus>();
+        for (final FileStatus fileStatus : orig)
         {
-            if (!fileStatus.getPath().getName().toLowerCase().endsWith(".shp"))
+            if (fileStatus.getPath().getName().toLowerCase().endsWith(".shp"))
             {
-                list.remove(fileStatus);
+                list.add(fileStatus);
             }
         }
         return list;

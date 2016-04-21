@@ -22,17 +22,6 @@ abstract class AbstractInputFormat<T extends Writable>
     @Override
     protected List<FileStatus> listStatus(final JobContext job) throws IOException
     {
-/*
-        final List<FileStatus> list = super.listStatus(job);
-        for (final FileStatus fileStatus : list)
-        {
-            if (!fileStatus.getPath().getName().toLowerCase().endsWith(".shp"))
-            {
-                list.remove(fileStatus);
-            }
-        }
-        return list;
-*/
         final List<FileStatus> orig = super.listStatus(job);
         final List<FileStatus> list = new ArrayList<FileStatus>();
         for (final FileStatus fileStatus : orig)

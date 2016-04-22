@@ -26,10 +26,10 @@ class CreatePolylineM(object):
         return
 
     def execute(self, parameters, messages):
-        spref = arcpy.SpatialReference(102100)
         fc = "in_memory/Links"
         if arcpy.Exists(fc):
             arcpy.management.Delete(fc)
+        spref = arcpy.SpatialReference(102100)
         arcpy.management.CreateFeatureclass("in_memory", "Links", "POLYLINE",
                                             spatial_reference=spref,
                                             has_m="ENABLED",
